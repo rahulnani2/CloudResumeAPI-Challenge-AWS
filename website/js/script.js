@@ -39,7 +39,7 @@ window.addEventListener('DOMContentLoaded', event => {
 const counter = document.querySelector(".counter-number");
 async function updateCounter() {
     try {
-        const response = await fetch("https://ck0oj70heh.execute-api.us-west-2.amazonaws.com/cloud-resume-function");
+        const response = await fetch("https://zebe2ye6otonqjcfkvh7ziatzi0qfqxx.lambda-url.us-east-1.on.aws/");
 
         if (response.ok) {
             const data = await response.json();
