@@ -1,0 +1,60 @@
+name: Backend (lambda and DynamoDB)
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  TERRAFORM_BACKEND_BUCKET: ${{ secrets.TERRAFORM_BACKENDBUCKET}}
+  TERRAFORM_BACKEND_KEY: global/s3/terraform.tfstate
+  TERRAFORM_BACKEDN_REGION: us-east-1
+
+jobs:
+  deploy:
+      name: aws-deployment 
+      runs-on: ubuntu-latest
+
+      defaults:
+         run:
+           working-directory: ./terraform
+      
+      steps:
+        - name: Checkout Code
+          uses: actions/checkout@main
+        - name: print working directory 
+          run: pwd
+        - name: List Files 
+          run: ls
+        - name: create backend tf 
+          run: | 
+            echo 'terraform{' > backend.tf
+            echo ' backend "s3" {' >> backend.tf
+            echo"   bucket = \"$TERRAFORM_BACKEND_BUCKET\"" >> backend.tf
+            echo"   key = \"$TERRAFORM_BACKEND_KEY\"" >> backend.tf
+            echo"   region = \"$TERRAFORM_BACKEND_REGION\"" >> backend.tf
+            echo'   }' >> backend.tf
+            echo '}' >> backend.tf
+        - name: Set up Terraform 
+          uses: hashicorp/setup-terraform@v2
+        - name: Terraform init 
+          run: terraform init
+        - name: Terraform Apply
+          run: terraform apply --auto-approve
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
