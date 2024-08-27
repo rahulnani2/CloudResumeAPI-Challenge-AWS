@@ -30,7 +30,7 @@ jobs:
           run: ls
         - name: create backend tf 
           run: | 
-            echo 'terraform{' > backend.tf
+            echo 'terraform {' > backend.tf
             echo ' backend "s3" {' >> backend.tf
             echo"   bucket = \"$TERRAFORM_BACKEND_BUCKET\"" >> backend.tf
             echo"   key = \"$TERRAFORM_BACKEND_KEY\"" >> backend.tf
