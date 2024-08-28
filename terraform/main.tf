@@ -71,7 +71,7 @@ resource "aws_lambda_function_url" "funcurl" {
 
     cors {
         allow_credentials = true
-        allow_origins = ["https://resume.rahulonline.cloud"]
+        allow_origins = ["*"]
         allow_methods = ["*"]
         allow_headers = ["date", "keep-alive"]
         expose_headers = ["keep-alive", "date"]
