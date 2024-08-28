@@ -44,6 +44,7 @@ resource "aws_iam_policy" "iam_policy_cloud_resume" {
             {
                "Effect" : "Allow",
                "Action" : [
+                 "dynamodb:PutItem",
                  "dynamodb:UpdateItem",
                  "dynamodb:GetItem"
                ],
