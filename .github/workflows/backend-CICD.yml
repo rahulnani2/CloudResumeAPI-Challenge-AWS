@@ -24,10 +24,13 @@ jobs:
       steps:
         - name: Checkout Code
           uses: actions/checkout@main
+          
         - name: print working directory 
           run: pwd
+          
         - name: List Files 
           run: ls
+          
         - name: create backend.tf 
           run: | 
             echo 'terraform {' > backend.tf
